@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Naiane!!</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            position: relative;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .image {
+            width: 60%; /* Definido para 60% da largura da tela */
+            height: auto; /* Ajusta a altura automaticamente para manter a proporção */
+            position: relative;
+            z-index: 1;
+        }
+        .message {
+            font-size: 24px;
+            color: #FFD700;
+            margin-top: 20px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #FFD700;
+            margin: 20px 0;
+        }
+        .words-list {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            z-index: 2;
+        }
+        .word {
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+            position: relative;
+        }
+        .highlight {
+            background-color: black; /* Fundo preto ao redor do texto */
+            padding: 5px; /* Espaço em volta do texto */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(100%); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100%); }
+        }
+        @keyframes flash {
+            0%, 95% {
+                background-color: black;
+                opacity: 1;
+            }
+            96%, 100% {
+                background-color: black;
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Para Naiane!!</h1>
+    <div class="container">
+        <img src="https://dl.dropboxusercontent.com/scl/fi/v3gmkzzjylvhdajzzzi44/WhatsApp-Image-2024-10-15-at-18.13.50.jpeg?rlkey=sjlobebrlz4cwxh7mmjuu0mzi&st=rqus3717&dl=0" alt="Naiane" class="image">
+    </div>
+    <div class="message">Continue a brilhar e fazendo a diferença na vida de todos ao seu redor!</div>
+
+    <div class="words-list" id="wordsList"></div>
+
+    <script>
+        const words = [
+            "Incrível", "Inteligente", "Empoderada", "Linda", "Criativa",
+            "Determinada", "Carismática", "Amável", "Inspiradora", "Corajosa",
+            "Elegante", "Generosa", "Sensacional", "Dedicada", "Confiante",
+            "Gentil", "Divertida", "Brilhante", "Autêntica", "Forte",
+            "Charmosa", "Diva", "Radiante", "Talentosa", "Atraente",
+            "Sábia", "Empática", "Amiga", "Vibrante", "Leal",
+            "Sonhadora", "Estilosa", "Competente", "Humorística", "Atenciosa",
+            "Impactante", "Extraordinária", "Persuasiva", "Motivadora", "Generosa",
+            "Diligente", "Habilidosa", "Compreensiva", "Positiva", "ThorZinho",
+            "Brava", "Estimulante", "Ousada", "Poderosa", "Visionária",
+            "Resiliente", "Equilibrada", "Simpática", "Vibrante", "Graciosa",
+            "Exuberante", "Solidária", "Ponderada", "Cativante", "Entusiasmada",
+            "Espontânea", "Valiosa", "Zelosa"
+        ];
+
+        const wordsList = document.getElementById("wordsList");
+        let wordIndex = 0;
+
+        function showWord() {
+            const wordSpan = document.createElement("div");
+            wordSpan.classList.add("word", "highlight");
+            wordSpan.textContent = words[wordIndex];
+            wordsList.appendChild(wordSpan);
+
+            setTimeout(() => {
+                wordsList.removeChild(wordSpan);
+            }, 5000);
+
+            wordIndex = (wordIndex + 1) % words.length;
+
+            setTimeout(showWord, 5000);
+        }
+
+        setTimeout(showWord, 3000); // Inicia a animação após 3 segundos
+
+        // Função para fazer a tela piscar a cada 30 segundos
+        function flashScreen() {
+            document.body.style.animation = 'flash 1s forwards';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 1000); // Dura 1 segundo
+        }
+
+        setInterval(flashScreen, 30000); // Chama a função de piscar a cada 30 segundos
+    </script>
+</body>
+</html>
